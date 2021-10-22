@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -18,6 +19,7 @@ public class GameManager : MonoBehaviour
     /// SpawnPoint reached by the player
     /// </summary>
     private Transform m_CurrentSapwnPoint = null;
+    private Int32 m_Punctuation = 0;
 
     void Awake()
     {
@@ -48,4 +50,18 @@ public class GameManager : MonoBehaviour
         m_Player.transform.position = m_CurrentSapwnPoint.position;
     }
 
+    /// <summary>
+    /// Set new checkpoint
+    /// </summary>
+    public void SetSpawnPoint(Transform newLocation)
+    {
+        // We assign the new location as spawn point
+        m_CurrentSapwnPoint.position = newLocation.position;
+    }
+
+    public void UpdatePunctuation(Int32 points)
+    {
+        m_Punctuation += points;
+        Debug.Log("Actual Points: "+ m_Punctuation);
+    }
 }
