@@ -22,8 +22,12 @@ public class DeathScript : MonoBehaviour
     {
         if (other.tag == "Player")
         {
-            m_GameManager.RespawnPlayer();
-
+            GetComponent<AudioSource>().Play();
+            m_GameManager.UpdateLives();
+            if (m_GameManager.m_lives > 0)
+            {
+                m_GameManager.RespawnPlayer();
+            }
         }
     }
 

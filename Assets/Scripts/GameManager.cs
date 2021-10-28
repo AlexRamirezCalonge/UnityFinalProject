@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -19,8 +20,8 @@ public class GameManager : MonoBehaviour
     /// SpawnPoint reached by the player
     /// </summary>
     private Transform m_CurrentSapwnPoint = null;
-    private int m_Punctuation = 0;
-    public int m_lifes = 3;
+    public static int _Punctuation = 0;
+    public int m_lives = 3;
     private UIManager m_UIMgr=null;
 
     void Awake()
@@ -63,10 +64,12 @@ public class GameManager : MonoBehaviour
         m_CurrentSapwnPoint.position = newLocation.position;
     }
 
-    public void UpdatePunctuation(int points)
+    public void UpdateLives()
     {
-        m_Punctuation += points;
-
-        Debug.Log("Actual Points: "+ m_Punctuation);
+        m_lives--;
+        if (m_lives == 0)
+        {
+            SceneManager.LoadScene("GameOver", LoadSceneMode.Single);
+        }
     }
 }

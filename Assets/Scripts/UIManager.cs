@@ -8,28 +8,42 @@ public class UIManager : MonoBehaviour
 {
     public GameObject[] lifes;
     public Text scoreText = null;
-    private int score = 0;
+    private int m_locaScore = 0;
+    private int m_localLives = 0;
     public GameManager gameMgr;
     // Start is called before the first frame update
     void Start()
     {
-        for (int i = 0; i < gameMgr.m_lifes; i++)
+        m_localLives = gameMgr.m_lives;
+        for (int i = 0; i < lifes.Length; i++)
         {
             lifes[i].SetActive(true);
+        }
+    }
+
+    //
+    void ActiveLivesUI(int totalLives)
+    {
+        for (int i = totalLives; i < lifes.Length; i++)
+        {
+            lifes[i].SetActive(false);
         }
     }
 
     // Update is called once per frame
     void Update()
     {
-        
-    }
-
-    public void UpdateLives(int currentLives)
-    {
-        for (int i = lifes.Length-1; i < lifes.Length-currentLives-1; i--)
+        if (gameMgr.m_lives != m_localLives)
         {
-            lifes[i].SetActive(false);
+            m_localLives = gameMgr.m_lives;
+            ActiveLivesUI(m_localLives);
+        }
+
+        if (GameManager._Punctuation != m_locaScore)
+        {
+            m_locaScore = GameManager._Punctuation;
+            GameObject scoreGameObject = transform.Find("Score").gameObject;
+            scoreGameObject.GetComponent<Text>().text = "Score : " + m_locaScore;
         }
     }
 }

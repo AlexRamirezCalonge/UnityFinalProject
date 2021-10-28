@@ -29,10 +29,9 @@ public class Pickable : MonoBehaviour
         if (other.tag == "Player")
         {
             m_Collider.enabled = false;
-            m_GameManager.UpdatePunctuation(Points);
+            GameManager._Punctuation += Points;
             m_Audio.Play();
             GetComponent<SpriteRenderer>().enabled = false;
-            //Destroy(this.gameObject);
         }
     }
     // Update is called once per frame
