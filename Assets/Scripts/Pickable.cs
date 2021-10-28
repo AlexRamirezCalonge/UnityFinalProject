@@ -8,10 +8,17 @@ public class Pickable : MonoBehaviour
 
     public int Points;
 
+    private AudioSource m_Audio;
+
+    private BoxCollider2D m_Collider;
+
+
     // Start is called before the first frame update
     void Start()
     {
         m_GameManager = FindObjectOfType<GameManager>();
+        m_Audio = GetComponent<AudioSource>();
+        m_Collider = GetComponent<BoxCollider2D>();
     }
     /// <summary>
     /// Some collider have enter on the death trigger
@@ -21,13 +28,19 @@ public class Pickable : MonoBehaviour
     {
         if (other.tag == "Player")
         {
+            m_Collider.enabled = false;
             m_GameManager.UpdatePunctuation(Points);
-            Destroy(this.gameObject);
+            m_Audio.Play();
+            GetComponent<SpriteRenderer>().enabled = false;
+            //Destroy(this.gameObject);
         }
     }
     // Update is called once per frame
     void Update()
     {
-        
+        if (!m_Audio.isPlaying && !m_Collider.enabled)
+        {
+            Destroy(this.gameObject);
+        }
     }
 }

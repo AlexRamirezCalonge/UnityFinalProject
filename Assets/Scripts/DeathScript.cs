@@ -23,6 +23,7 @@ public class DeathScript : MonoBehaviour
         if (other.tag == "Player")
         {
             m_GameManager.RespawnPlayer();
+
         }
     }
 

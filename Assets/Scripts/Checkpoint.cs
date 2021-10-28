@@ -6,6 +6,10 @@ using UnityEngine;
 public class Checkpoint : MonoBehaviour
 {
     private GameManager m_GameManager = null;
+
+    public Sprite m_GreenFlag = null;
+
+    public Sprite m_RedFlag = null;
     // Start is called before the first frame update
     void Start()
     {
@@ -21,7 +25,9 @@ public class Checkpoint : MonoBehaviour
         if (other.tag == "Player")
         {
             m_GameManager.SetSpawnPoint(transform);
-            Destroy(this.gameObject);
+            GetComponent<SpriteRenderer>().sprite = m_GreenFlag;
+            GetComponent<BoxCollider2D>().enabled = false;
+            //Destroy(this.gameObject);
         }
     }
     

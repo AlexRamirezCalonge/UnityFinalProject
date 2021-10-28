@@ -19,7 +19,9 @@ public class GameManager : MonoBehaviour
     /// SpawnPoint reached by the player
     /// </summary>
     private Transform m_CurrentSapwnPoint = null;
-    private Int32 m_Punctuation = 0;
+    private int m_Punctuation = 0;
+    public int m_lifes = 3;
+    private UIManager m_UIMgr=null;
 
     void Awake()
     {
@@ -29,6 +31,8 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        m_UIMgr = GameObject.Find("CanvasPanel").GetComponent<UIManager>();
+
         if (!m_InitialSpawnPoint)
             Debug.LogWarning("InitialSpawnPoint doessn't been asignated");
 
@@ -59,9 +63,10 @@ public class GameManager : MonoBehaviour
         m_CurrentSapwnPoint.position = newLocation.position;
     }
 
-    public void UpdatePunctuation(Int32 points)
+    public void UpdatePunctuation(int points)
     {
         m_Punctuation += points;
+
         Debug.Log("Actual Points: "+ m_Punctuation);
     }
 }
