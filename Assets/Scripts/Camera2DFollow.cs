@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class Camera2DFollow : MonoBehaviour
 {
-    float camera;
+    //private float camera;
     public GameObject player;
     public float moveSpeed;
     public Transform target; // Drop the player in the inspector of the camera
 
     void Start()
     {
-        camera = player.transform.position.x;
+        //camera = player.transform.position.x;
         player = GameObject.Find("Player");
     }
 
