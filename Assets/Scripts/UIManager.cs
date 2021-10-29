@@ -36,7 +36,10 @@ public class UIManager : MonoBehaviour
         if (gameMgr.m_lives != m_localLives)
         {
             m_localLives = gameMgr.m_lives;
-            ActiveLivesUI(m_localLives);
+            if (m_localLives > 0)
+            {
+                ActiveLivesUI(m_localLives);
+            }
         }
 
         if (GameManager._Punctuation != m_locaScore)
